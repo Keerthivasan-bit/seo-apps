@@ -7,7 +7,13 @@ import userRoutes from './routes/userRoutes.js'
 dotenv.config()
 
 const app = express()
-app.use(cors())
+
+// ✅ Configure CORS to allow requests only from your frontend domain
+app.use(cors({
+  origin: 'https://seo-app-eight.vercel.app', // allow only this frontend
+  credentials: true, // if using cookies or auth headers
+}))
+
 app.use(express.json())
 
 connectDB()
